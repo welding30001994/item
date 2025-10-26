@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - Página Principal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .search-box {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        
+        .pagination {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .pagination button {
+            padding: 10px 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination button:hover {
+            background: #6a11cb;
+            color: white;
+        }
+        
+        .pagination button.active {
+            background: #6a11cb;
+            color: white;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 160px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .project-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .info-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+        
+        .info-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .info-section p {
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #7f8c8d;
+            border-top: 1px solid #eaeaea;
+            margin-top: 50px;
+        }
+        
+        .page-info {
+            text-align: center;
+            margin: 20px 0;
+            color: #7f8c8d;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Catálogo de Productos</h1>
+            <p class="subtitle">Explora nuestros 100 catálogos de productos organizados por categorías y características</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar catálogo...">
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- La paginación se generará con JavaScript -->
+            </div>
+        </div>
+        
+        <div class="page-info">
+            Mostrando <span id="currentRange">1-12</span> de 100 catálogos
+        </div>
+        
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Los proyectos se generarán con JavaScript -->
+        </div>
+        
+        <div class="info-section">
+            <h2>Acerca de nuestros catálogos</h2>
+            <p>Nuestros 100 catálogos de productos están diseñados para ofrecerte una experiencia de compra intuitiva y agradable. Cada catálogo está organizado por categorías para que puedas encontrar fácilmente lo que buscas.</p>
+            <p>Todos los productos incluyen descripciones detalladas, imágenes de alta calidad y precios competitivos. Además, ofrecemos diversas opciones de filtrado y búsqueda para que puedas refinar tus resultados según tus necesidades específicas.</p>
+            <p>Si tienes alguna pregunta sobre nuestros productos o necesitas asistencia con tu compra, no dudes en contactar a nuestro equipo de atención al cliente.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Catálogo de Productos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de ejemplo para los catálogos
+        const categories = [
+            "Electrónicos", "Moda", "Hogar", "Deportes", "Juguetes", 
+            "Libros", "Belleza", "Salud", "Automotriz", "Jardinería",
+            "Mascotas", "Oficina", "Tecnología", "Alimentos", "Bebidas",
+            "Viajes", "Música", "Arte", "Instrumentos", "Fotografía"
+        ];
+        
+        const adjectives = [
+            "Premium", "Exclusivo", "Económico", "Lujoso", "Innovador",
+            "Clásico", "Moderno", "Vintage", "Sostenible", "Inteligente",
+            "Portátil", "Profesional", "Casual", "Deportivo", "Elegante",
+            "Minimalista", "Colorido", "Resistente", "Ligero", "Compacto"
+        ];
+        
+        // Generar 100 proyectos
+        const projects = [];
+        for (let i = 1; i <= 100; i++) {
+            const category = categories[Math.floor(Math.random() * categories.length)];
+            const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+            
+            projects.push({
+                id: i,
+                title: `Catálogo ${adjective} de ${category}`,
+                description: `Descubre nuestra amplia gama de productos de ${category.toLowerCase()} con opciones ${adjective.toLowerCase()} para todos los gustos.`,
+                link: `catalogo_productos (${i}).html`,
+                icon: getIconForCategory(category)
+            });
+        }
+        
+        // Función para obtener un icono según la categoría
+        function getIconForCategory(category) {
+            const iconMap = {
+                "Electrónicos": "📱",
+                "Moda": "👕",
+                "Hogar": "🏠",
+                "Deportes": "⚽",
+                "Juguetes": "🧸",
+                "Libros": "📚",
+                "Belleza": "💄",
+                "Salud": "💊",
+                "Automotriz": "🚗",
+                "Jardinería": "🌻",
+                "Mascotas": "🐶",
+                "Oficina": "📊",
+                "Tecnología": "💻",
+                "Alimentos": "🍎",
+                "Bebidas": "🍷",
+                "Viajes": "✈️",
+                "Música": "🎵",
+                "Arte": "🎨",
+                "Instrumentos": "🎸",
+                "Fotografía": "📷"
+            };
+            
+            return iconMap[category] || "📦";
+        }
+        
+        // Variables para la paginación
+        const projectsPerPage = 12;
+        let currentPage = 1;
+        let filteredProjects = [...projects];
+        
+        // Función para mostrar proyectos
+        function displayProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = '';
+            
+            const startIndex = (currentPage - 1) * projectsPerPage;
+            const endIndex = startIndex + projectsPerPage;
+            const projectsToShow = filteredProjects.slice(startIndex, endIndex);
+            
+            projectsToShow.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <div class="project-image">
+                        ${project.icon}
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <a href="${project.link}" class="btn">Ver Catálogo ${project.id}</a>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+            
+            updatePagination();
+            updatePageInfo();
+        }
+        
+        // Función para actualizar la información de la página
+        function updatePageInfo() {
+            const startIndex = (currentPage - 1) * projectsPerPage + 1;
+            const endIndex = Math.min(currentPage * projectsPerPage, filteredProjects.length);
+            document.getElementById('currentRange').textContent = `${startIndex}-${endIndex}`;
+        }
+        
+        // Función para actualizar la paginación
+        function updatePagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+            
+            // Botón anterior
+            const prevButton = document.createElement('button');
+            prevButton.textContent = 'Anterior';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayProjects();
+                }
+            });
+            pagination.appendChild(prevButton);
+            
+            // Números de página
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.className = i === currentPage ? 'active' : '';
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    displayProjects();
+                });
+                pagination.appendChild(pageButton);
+            }
+            
+            // Botón siguiente
+            const nextButton = document.createElement('button');
+            nextButton.textContent = 'Siguiente';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayProjects();
+                }
+            });
+            pagination.appendChild(nextButton);
+        }
+        
+        // Función para buscar proyectos
+        function searchProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm) {
+                filteredProjects = projects.filter(project => 
+                    project.title.toLowerCase().includes(searchTerm) || 
+                    project.description.toLowerCase().includes(searchTerm)
+                );
+            } else {
+                filteredProjects = [...projects];
+            }
+            
+            currentPage = 1;
+            displayProjects();
+        }
+        
+        // Inicializar la página
+        document.getElementById('searchInput').addEventListener('input', searchProjects);
+        displayProjects();
+    </script>
+</body>
+</html>
